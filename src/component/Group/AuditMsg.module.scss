@@ -1,0 +1,27 @@
+@import "../index.scss";
+@import "../index.module.scss";
+
+.item {
+  padding: 0 $base-space;
+  line-height: 3;
+  &:hover{
+    background-color: $gray-100;
+    transition: $base-fast-transition;
+  }
+  .link {
+    color: $theme-color;
+    @include fakeLink;
+  }
+  .time{
+    font-size: 75%;
+    margin-right: $base-space/2;
+  }
+  .acts {
+    float: right;
+    .act {
+      font-size: 75%;
+      margin-left: $base-space;
+      cursor: pointer;
+    }
+  }
+}

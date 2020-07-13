@@ -1,0 +1,30 @@
+@import "../index.scss";
+@import "../index.module.scss";
+
+.box {
+    position: relative;
+    height: 100%;
+    .left {
+        background-color: #97A28F;
+        display: flex;
+        align-items: center;
+        .middle{
+            max-width: 90%;
+            margin: 0 auto;
+            text-align: center;
+            .gname {
+                font-size: 125%;
+                color: $white;
+                @include ellipsis;
+                margin-top: $base-space/2;
+                margin-bottom: $base-space;
+            }
+        }
+    }
+    .right {
+        position: relative;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: $base-space;
+    }
+}

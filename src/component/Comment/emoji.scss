@@ -1,0 +1,70 @@
+$warpper-height: 260px;
+$tab-list-height: 44px;
+$tab-bar-width: $tab-list-height;
+$tab-warp-height: $warpper-height - $tab-list-height;
+$tab-bar-bgcolor: #ddd;
+$default-transition: all 300ms ease-in;
+
+.warpper {
+    position: absolute;
+    width: 310px;
+    height: $warpper-height;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    z-index: 9999;
+    transition: $default-transition;
+    opacity: 1;
+    overflow: hidden;
+    * {
+        box-sizing: border-box;
+    }
+}
+
+.tabList {
+    width: 100%;
+    height: $tab-list-height;
+    background-color: #f1f1f1;
+    box-shadow: inset 0 0 10px #eeee; 
+    display: flex;
+    justify-content: flex-start;
+}
+
+.tabBar {
+    width: $tab-bar-width;
+    line-height:  $tab-list-height;
+    text-align: center;
+    transition: $default-transition;
+    img {
+        height: auto;
+    }
+    &:hover {
+        background-color: $tab-bar-bgcolor;
+    }
+}
+
+.tabWarp {
+    width: 100%;
+    height: $tab-warp-height;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    background-color: #fff;
+}
+
+.tabBox {
+    display: none;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+    padding-bottom: $tab-list-height;
+}
+
+.activeBar {
+    background-color: $tab-bar-bgcolor;
+}
+
+.activeBox {
+    opacity: 1;
+    display: flex;
+}

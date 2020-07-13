@@ -1,0 +1,54 @@
+@import "../../index.scss";
+@import "../../index.module.scss";
+
+.box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .action { 
+        padding: 4px $base-space;
+        background-color: $white;
+        border-bottom: $base-border;
+        text-align: right;
+    }
+    .content {
+        padding: $base-space;
+        background-color: $gray-100;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        flex: 1;
+    }
+}
+
+.item {
+    padding: $base-space;
+    margin-bottom: $base-space;
+    background-color: $white;
+    box-shadow: 0 0 3px $gray-300;
+    &:hover {
+        .foot .footLeft {
+            display: block;
+            cursor: pointer;
+        }
+    }
+    .foot {
+        padding-top: $base-space;
+        @include clearfix;
+        .footLeft {
+            float: left;
+            display: none;
+            .footLeftAction {
+                margin-right: $base-space;
+                font-size: 75%;
+                cursor: pointer;
+            }
+        }
+        .footRight {
+            float: right;
+            color: $muted-color;
+            font-size: 62.5%;
+        }
+    }
+}

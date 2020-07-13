@@ -1,0 +1,9 @@
+{
+  "name": "program-space",
+  "version": "1.0.0",
+  "description": "Working on future programming",
+  "main": "./main.js",
+  "author": "艾森智能 (前端开发组)",
+  "license": "ISC",
+  "keywords": []
+}

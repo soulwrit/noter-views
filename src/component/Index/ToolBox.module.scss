@@ -1,0 +1,17 @@
+@import "../index.scss";
+
+.action {
+  position: relative;
+  width: 100%;
+  height: $base-space*3;
+  font-size: 200%;
+  text-align: center;
+  &:hover {
+    color: $theme-color;
+    transition: $base-slow-transition;
+    cursor: pointer;
+  }
+  &+&{
+    border-top: $base-border;
+  }
+}

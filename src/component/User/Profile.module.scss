@@ -1,0 +1,96 @@
+@import "../index.scss";
+
+.warp {
+  padding: 0!important;
+  height: 100%;
+  @include clearfix;
+  @at-root .left {
+    position: relative;
+    float: left;
+    width: 50%;
+    height: 100%;
+    background-image: url('./profile_bg.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    .beatyWarp {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 140px;
+      background-color: $gray-300;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @at-root .beatyBox{
+        overflow: hidden;
+        max-width: 80%;
+        height: 64px;    
+        word-break: keep-all;
+        white-space: nowrap;
+        .uname {
+          display: inline-block;
+          margin-left: $base-space/2;
+          vertical-align: top;
+          .name {
+            font-size: 2em;
+          }
+          .intro {
+            font-size: 85%;
+          }
+        }
+      }
+      @at-root .beatyAction{
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        margin-left: -84px;
+      }
+    }
+  }
+  @at-root .right{
+    float: left;
+    width: 50%;
+    height: 100%;
+    padding: $base-space/2 $base-space;
+    box-sizing: border-box;
+    .infoTit{
+      font-size: 110%;
+      font-weight: 600;
+      @include clearfix; 
+      @at-root .infoAction {
+        float: right;
+        font-weight: normal;
+        span{
+          font-size: 75%;
+          margin-left: $base-space/2;
+          cursor: pointer;
+          @include fakeLink;
+          &.close{
+            &:hover {
+              color: $red;
+            }
+          }
+          i {
+            margin-right: $base-space/5;
+          }
+        }
+      }
+    }
+
+    .infoWarp{
+      position: relative;
+      .infoItem {
+        margin-top: $base-space/2;
+        .infoIcon{
+          font-size: 1em;
+          font-weight: 600;
+          color: $gray-dark;
+          margin-right: $base-space/2;
+        }
+      }
+    }
+  }
+}

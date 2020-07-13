@@ -1,0 +1,46 @@
+@import "../index.scss";
+@import "../index.module.scss";
+
+.item {
+  padding: 0 $base-space;
+  &:hover{
+    background-color: $gray-100;
+    transition: $base-fast-transition;
+    .acts .act {
+      display: unset;
+    }
+  }
+  
+  .tit {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .det{
+    font-size: 62.5%;
+    text-align: justify;
+    color: $muted-color;
+    line-height: 1.6;
+    padding-bottom: $base-space;
+    @include clearfix;
+  }
+
+  .time{
+    padding-top: $base-space;
+    font-size: 75%;
+    @include clearfix;
+  }
+  .acts {
+    float: right;
+    .act {
+      display: none;
+      font-size: 75%;
+      margin-left: $base-space;
+      cursor: pointer;
+      .ico {
+        font-size: 1em;
+        margin-right: $base-space/8;
+      }
+    }
+  }
+}

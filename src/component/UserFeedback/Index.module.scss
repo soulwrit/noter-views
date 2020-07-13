@@ -1,0 +1,40 @@
+@import "../index.scss";
+@import "../index.module.scss";
+
+.item {
+  padding: $base-space;
+  border-bottom: 1px double $gray-200;
+  &:hover{
+    background-color: $gray-100;
+    transition: $base-fast-transition;
+    .tit .act {
+      display: unset;
+    }
+  }
+  
+  .tit {
+    font-size: 14px;
+    margin-bottom: $base-space/2;
+    @include clearfix;
+    .act {
+      display: none;
+      float: right;
+      font-size: 75%;
+      margin-left: $base-space;
+      cursor: pointer;
+      .ico {
+        font-size: 1em;
+        margin-right: $base-space/8;
+      }
+    }
+  }
+
+  .det{
+    font-size: 75%;
+    text-align: justify;
+    @include clearfix;
+    .time{
+      float: right;
+    }
+  }
+}

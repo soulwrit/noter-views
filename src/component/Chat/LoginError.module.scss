@@ -1,0 +1,11 @@
+@import "./config.scss";
+
+.loginError {
+    text-align: center;
+    font-size: 75%;
+    .loginErrorInfo{
+        margin-right: 10px;
+        position: relative;
+        top: 3px;
+    }
+}

@@ -1,0 +1,23 @@
+@import "./config.scss";
+
+.warp {
+    position: relative;
+    margin-bottom: $space;
+    @include clearfix;
+    .head {
+        font-size: 90%;
+        text-align: right;
+        .uname {
+            padding: 0 $space;
+        }
+     }
+     .body {
+         position: relative;
+         float: right;
+         margin-right: 2.55em;
+         padding: $space/2 $space;
+         color: $white;
+         background-color: $theme-color;
+         border-radius: 10px 0 10px 10px;
+    }
+}

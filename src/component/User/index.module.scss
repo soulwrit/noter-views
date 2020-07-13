@@ -1,0 +1,35 @@
+@import "../index.scss";
+
+.labelStyle {
+  width: 70px;
+  text-align: right;
+}
+.pwdLab {
+  width: 66px;
+  text-align: right;
+}
+.profileTabPane{
+  width: 50%;
+  background-image: url('./profile_bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.profileTab{
+  padding: 0 !important;
+  padding-top: 1em !important;
+  text-indent: 1em;
+}
+.profileGoback {
+  line-height: 2;
+  margin-bottom: 10px;
+  padding-left: 1em;
+  cursor: pointer;
+  &:hover{
+    color: $theme-color;
+  }
+  i {
+    position: relative;
+    top: 1px;
+  }
+}

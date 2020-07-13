@@ -1,0 +1,80 @@
+@import "../index.scss";
+$header-and-footer-height: 34px;
+:global{
+  #root{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+  }
+}
+// 导航栏
+.header{
+  background-color: $theme-color;
+  display: flex;
+  align-content: space-between;
+  height: $header-and-footer-height;
+  line-height: $header-and-footer-height;
+  // logo
+  .headerLogo{
+    width: 40px;
+    text-align: center;
+    overflow: hidden;
+    line-height: inherit;
+  }
+  // 导航字体
+  @at-root .headerNav{
+    flex: 1;
+    width: auto;
+    .headerNavIcon{
+      font-size: 1.2em;
+      margin-right: 2px;
+      color: $white;
+    }
+    .headerNavItem {
+      color: $gray-200;
+      &:hover {
+        color: $white;
+      }
+    }
+    .headerNavActive {
+      color: $white;
+      background-color: rgba($white, .2);
+    }
+  }
+  @at-root .headerRight{
+    position: relative;
+    cursor: pointer;
+    padding-left: $header-and-footer-height/2;
+    .headerRightIcon {
+      color: $white;
+      font-size: 1.2em;
+      margin-right: $header-and-footer-height/2;
+    }
+  }
+}
+// 视图区 
+.content{
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
+  flex: 1;
+}
+// 状态栏
+.footer{ 
+  display: flex;
+  align-items: center; 
+  padding: 0 10px;
+  height: $header-and-footer-height;
+  line-height: $header-and-footer-height;
+  background-color: $gray-100;
+  border-top: 1px solid $gray-200;
+  .footerLeft{
+    flex: 1; 
+    font-size: 13px;
+    @include fakeLink;
+  }
+  .footerRight{ 
+    flex: 1;
+    text-align: right;
+  }
+}

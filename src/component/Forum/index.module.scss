@@ -1,0 +1,11 @@
+@import '../index.scss';
+
+// 标签管理
+.markActions { 
+    margin-top: $base-space / 2;
+}
+.markActionName {
+    color: $gray-400;
+    margin-left: $base-space / 3;
+    font-size: 87.5%;
+}

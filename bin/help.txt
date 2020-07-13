@@ -1,0 +1,21 @@
+Command Optional:
+    npm run dep nvm                 View nodeJs package manager NVM information. (查看nodejs包管理器nvm的信息。)
+    npm run dep list                Lists all versions on the server. (列出服务器上所有代码版本)
+    npm run dep clear               Clear all versions of the code on the server. (清空服务器上所有版本的代码)
+    npm run dep rm $version         Deletes the code for the server-side version specified. (删除服务器端指定版本的代码)
+    npm run dep status              View the running state of the server-side pm2. (查看服务器端pm2的运行状态)
+    npm run dep install $version    Installs the code for the server-side version specified. (安装服务器端指定版本的代码)
+    npm run dep start $version      Starts the code for the version specified on the server side. (启动服务器端指定版本的代码)
+    npm run dep stop $version       Stops the server-side version of the code specified. (停止服务器端指定版本的代码)
+    npm run dep publish             Releases the current or specified version of the code and starts running. (发布当前版或指定版的代码并启动运行)
+    npm run dep rollback $version   Rollback to the specified version of the code. (回滚到指定版本的代码)
+    npm run dep pack                Compile the current version of the local code, do not release. (编译本地当前版本的代码，不发布)
+    npm run dep help                View the help document. (查看帮助文档)
+
+Command Usage:
+    By default, the version number is extracted from the project's package.json and started as the current release
+    默认从项目的package.json中提取版本号，并作为当前发布版启动运行
+    eg:
+        npm run dep publish 1.0.0
+        npm run dep rollback 1.0.0
+        npm run dep status

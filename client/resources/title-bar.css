@@ -1,0 +1,54 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+html *{
+    -webkit-user-drag: none;
+}
+
+.title-bar {
+    position: fixed;
+    z-index: 99999999;
+    right: 0;
+    top: 0;
+    background-color: transparent;
+    padding: 5px 10px;
+}
+
+.title-bar a {
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    margin-left: 10px;
+    vertical-align: middle;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 50ms ease-in-out;
+}
+
+#min-win {
+    background-image: url('./min-win.svg');
+}
+
+#max-win {
+    background-image: url('./max-win.svg');
+}
+
+#cls-win {
+    background-image: url('./cls-win.svg');
+}
+
+#min-win:hover {
+    background-image: url('./min-win-on.svg');
+}
+
+#max-win:hover {
+    background-image: url('./max-win-on.svg');
+}
+
+#cls-win:hover {
+    background-image: url('./cls-win-on.svg');
+}

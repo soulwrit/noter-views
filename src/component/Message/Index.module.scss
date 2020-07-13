@@ -1,0 +1,31 @@
+@import "../index.scss";
+
+.mdlBody {
+  padding: 0;
+}
+.tabPane{
+  border-bottom: 1px solid $gray-300;
+}
+.tabItem{
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.tabExtra {
+  position: relative;
+  top: -2px;
+  margin-left: $base-space;
+  cursor: pointer;
+  .tabExtraIcon {
+    margin-right: 4px;
+  }
+}
+.tabExtraClose{
+  position: relative;
+  top: 1px;
+  margin-left: $base-space;
+  &:hover{
+    color: $red;
+    cursor: pointer;
+  }
+}

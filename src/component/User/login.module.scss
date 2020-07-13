@@ -1,0 +1,49 @@
+@import "../index";
+
+$tips-and-help-height: 40px;
+
+.warp {
+  width: 100%;
+  height: 100%;
+  // background: url("./login_bg.jpg") center no-repeat;
+  background-color: $theme-color;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.help {
+  width: 100%;
+  height: $tips-and-help-height;
+  line-height: $tips-and-help-height;
+  background-color: rgba($white, 0.91);
+  color: $base-color;
+  text-align: center;
+  // background-image: linear-gradient(to bottom, rgba($gray-100, .15) 50%, $gray-200 100%);
+  background-color: rgba($black, .05);
+  color: $gray-100;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+}
+
+.box {
+  width: 300px;
+  height: 270px;
+  position: relative;
+  top: 50%;
+  margin-top: -180px;  
+  padding: 20px;
+  background-color: $gray-100;
+  box-shadow: 0 0 13px rgba($black, 0.25);
+}
+
+.title { 
+  font-size: 24px;
+  color: $theme-color; 
+  margin-bottom: 30px;
+}

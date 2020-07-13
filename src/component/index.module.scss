@@ -1,0 +1,45 @@
+@charset "UTF8";
+@import './index';
+
+.placeholder {
+    text-align: center;
+    padding: $base-space 0;
+    color: $muted-color;
+}
+.title {
+    font-weight: 600;
+    margin-bottom: $base-space/2;
+    @include clearfix;
+    .titleAction {
+        float: right;  
+    }
+    .titleIcon {
+        margin-left: $base-space/2;
+        cursor: pointer;
+    }
+}
+.fakeLink {
+    margin-left: $base-space;
+    color: $theme-color;
+    font-size: 85%;
+    @include fakeLink;
+}
+.noPadding {
+    position: relative;
+    padding: 0;
+}
+.closable {
+    display: block;
+    position: absolute;
+    top: $base-space/4;
+    right: $base-space/4;
+    padding: 0;
+    z-index: 1;
+    font-size: 200%;
+    font-weight: 600;
+    line-height: 0;
+    &:hover {
+        cursor: pointer;
+        color: $red;
+    }
+}

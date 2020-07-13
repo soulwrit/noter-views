@@ -1,0 +1,105 @@
+@import "./config.scss";
+
+@mixin title {
+    height: 34px;
+    line-height: 30px;
+    padding: 0 $space;
+    box-sizing: border-box;
+    @include clearfix;
+}
+.icon {
+    font-size: 100%;
+    margin-right: $space;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    .left {
+        flex: 1;
+        height: 100%;
+        border-right: $border;
+        @at-root .msg {
+            position: relative;
+            overflow-y: auto;
+            height: 60%;
+            padding: $base-space;
+            background-color: $white;
+            box-sizing: border-box;
+            .msgMore {
+                position: absolute;
+                width: 100%;
+                top: 0;
+                left: 0;
+                font-size: 62.5%;
+                text-align: center;
+                padding-top: $space/4;
+            }
+        }
+        @at-root .edit {
+            height: 40%;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            .editMenu{
+                @include title;
+                border-top: $border;
+            }
+            .editEnter {
+                flex: 1;
+                overflow: hidden;
+                box-sizing: border-box;
+                textarea {
+                    width: 100%;
+                    height: 100%;
+                    border: none;
+                    box-sizing: border-box;
+                    padding-top: 0;
+                    padding-bottom: $space;
+                }
+            }
+            .editSent{
+                @include title;
+                padding-right: 0;
+                font-size: 62.5%;
+                background-color: $white;
+                .editSentBtn{
+                    float: right;
+                    margin-right: $space;
+                }
+            }
+        }
+    }
+    .right{
+        width: 150px;
+        height: 100%;        
+        // @at-root .notice {
+        //     height: 35%;
+        //     width: 100%;
+        //     .noticeTit {
+        //         @include title;
+        //     }
+        //     .noticeCnt {
+        //         overflow-y: auto;
+        //         overflow-x: hidden;
+        //         padding: 0 $space $space;
+        //         font-size: 85%;
+        //         text-indent: 1.7em;
+        //     }
+        // }
+        @at-root .member {
+            height: 100%;
+            width: 100%;
+            .memberTit {
+                @include title; 
+            }
+            .memberBox {
+                overflow-x: hidden;
+                overflow-y: auto;
+                padding: $space;
+            }
+        }
+    }
+}

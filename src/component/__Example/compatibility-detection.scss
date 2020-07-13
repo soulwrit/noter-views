@@ -1,0 +1,68 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(24, 144, 255, 0.8);
+}
+
+.content {
+    margin: 100px auto;
+    outline: none;
+    border: .25rem solid transparent;
+    padding: 0;
+    border-radius:6px;
+    user-select: none;
+    width: 500px;
+    color: #1890ff;
+    overflow: hidden;
+}
+
+.illustration {
+    width: 100%;
+    height: 208px;
+    background-color:#1890ff;
+    background-image: url('./unsupported.png');
+    background-size: cover;
+}
+
+.body {
+    background: #fff;
+    padding: 1.5rem 2.25rem;
+    text-align: center;
+}
+
+/* Confirmation buttons at the bottom of the modal */
+.button {
+    margin: 1.5rem 0;
+    font-weight: bolder;
+    text-align: right;
+    display: flex;
+    justify-content: center;
+    button {
+        border: 1px solid #1890ff;
+        border-radius: 0.25rem;
+        padding: 0.5rem 2rem;
+        color: white;
+        font-weight: bold;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: all 300ms;
+        opacity: 0.7;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    button+button {
+        margin-left: 15px;
+    }
+}  
+
+.back{
+    background-color: #1890ff;
+}
+.download{
+    background-color: #f90;
+}

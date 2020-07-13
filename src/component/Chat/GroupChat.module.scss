@@ -1,0 +1,9 @@
+@import "./config.scss";
+
+.tabPane{
+    border-bottom: $border;
+    background-color: $white!important;
+}
+.tabItem{
+    padding: 0;
+}

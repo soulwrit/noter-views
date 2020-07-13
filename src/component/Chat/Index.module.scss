@@ -1,0 +1,114 @@
+@import "./config.scss";
+
+$tab-pane-width: 193px;
+$head-height: 36px;
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0;
+    border: $border;
+    .head {
+        position: relative;
+        width: 100%;
+        height: $head-height;
+        line-height: $head-height;
+        padding: 0 $space;
+        background-color: $gray-100;
+        border-bottom: $border;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-around;
+        .headLeft {
+            min-width: $tab-pane-width;
+            line-height: inherit;
+            .title {
+                @include fakeLink;
+            }
+        }
+        .headCenter {
+            text-align: center;
+            flex: 1;
+            .headName { 
+                @include fakeLink;
+                font-size: 100%;
+            }
+        }
+        .headRight {
+            min-width: 160px;
+            line-height: inherit;
+            text-align: right;
+            .headAction {
+                position: relative;
+                top: -2px;
+                font-size: 150%;
+                margin-left: $base-space;
+                font-weight: 600;
+                &:hover {
+                    cursor: pointer;
+                    color: $red;
+                }
+            }
+        }
+    }
+    .body {
+        flex: 1;
+        width: 100%;
+        .tabPane {
+            width: $tab-pane-width;
+            border-right: $border;
+            box-sizing: border-box;
+            padding: 0;
+            background-color: $white!important;
+            $height: 60px;
+            @at-root .tabName{ 
+                position: relative;
+                width: 100%;
+                height: $height;
+                padding: $space/1.5 $space !important;
+                display: flex;
+                justify-content: space-between;
+                box-sizing: border-box;
+                &:hover, &.tabNameActive {
+                    background-color: $gray-100;
+                    &:before{
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        width: 3px;
+                        height:100%;
+                        background-color: $theme-color;
+                        content: '';
+                    }
+                }
+                &:hover .tabNameClose{
+                    display: inline-block;
+                    color: $red;
+                }
+                .tabNameLeft { 
+                }
+                .tabNameCenter {
+                    flex: 1;
+                    padding: $space;
+                    .tabNameIntro {
+                        font-size: 75%;
+                    }
+                }
+                .tabNameRight {
+                    text-align: right;
+                    padding: $space;
+                }
+                .tabNameClose {
+                    display: none;
+                    font-weight: 600;
+                }
+            }
+        }
+        .tabItem{
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0;
+        } 
+    }
+}

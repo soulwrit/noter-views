@@ -1,0 +1,139 @@
+@charset "UTF8";
+@import '../index';
+
+$menuBarWidth: 40px;
+$slideBarWidth: 2px;
+$slideTitHeight: 34px;
+
+@mixin commonStyle1{
+    box-shadow: 0 1px 10px $gray-400;
+    padding-left: $base-space * 2/3 !important;
+    padding-right: $base-space * 2/3 !important;
+}
+
+// 滑动布局
+.box {
+    width: 100%;
+    height: 100%;
+    display: flex; 
+    user-select: none;
+    * {
+        box-sizing: border-box;
+    }
+    .left {
+        position: relative;
+        min-width: $slideBarWidth + $menuBarWidth;
+        overflow: hidden;
+        height: 100%;
+    }
+    .right {
+        position: relative;
+        flex: 1;
+        height: 100%;
+    }
+}
+
+// 栏菜单
+.menuBar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: $menuBarWidth;
+    height: 100%;
+    background-color: $gray-100;   
+    text-align: center; 
+    .menuIcon{ 
+        display: block;
+        margin-top: $menuBarWidth / 5;
+        margin-bottom: $menuBarWidth / 2;
+        font-size: 150%; 
+        cursor: pointer;
+        &:hover {
+            color: $theme-color; 
+        }
+    }
+}
+
+// 滑动盒子
+.slideBox {
+    position: relative;
+    height: 100%;
+    padding-left: $menuBarWidth;
+    padding-right: $slideBarWidth;
+    border-right: 1px solid $gray-100;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+// 滑动干
+.slideBar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    width: $slideBarWidth;
+    height: 100%;
+    cursor: ew-resize;
+}
+
+// *****
+.menuHead {
+    height: $slideTitHeight;
+    line-height: $slideTitHeight;
+    padding: 0 $base-space;
+    background-color: $gray-100;
+    margin-right: -$slideBarWidth;
+    display: flex;
+    .menuTitle {
+        text-overflow: ellipsis;
+    }
+    .menuAction {
+        flex: 1;
+        text-align: right;
+        i {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+}
+.menuBody {
+    flex: 1;
+    position: relative;
+    overflow-y: auto;
+    height: 100%;
+    padding: $base-space;
+    background-color: #fefaff;
+}
+// *****
+
+// 搜索 
+.searchEnter{
+    width: 100%;
+    border: none;
+    box-shadow: none!important;
+}
+.searchNoData{
+    color: $muted-color;
+    font-size: 90%;
+    text-align: center;
+}
+
+// 详情
+.detailInfo {
+    color: #999;
+    font-size: 13px;
+    padding: 5px 15px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    border-left: 3px solid #eaecef; 
+    line-height: 1.8;
+    text-align: left;
+}
+.detailMuted{
+    color: #444;
+    margin-right: 15px;
+    font-size: 13px;
+    text-align: left;
+}

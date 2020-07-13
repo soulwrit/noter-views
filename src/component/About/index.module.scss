@@ -1,0 +1,59 @@
+@import '../index.scss';
+.box {
+    padding: 10px 15px;
+    height: 100%;
+    overflow-y: auto;
+    @include clearfix;
+    .title {
+        width: 100%;
+        font-weight: 500;
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+        padding-bottom: 0.3em;;
+        &::after {
+            content: '';
+            display: block;
+            width: 4em;
+            height: 1px;
+            margin-top: 0.2em;
+            background-color: $theme-color;
+        }
+    }
+    .img {
+        width: 120px;
+        box-shadow: 0 0 3px $gray-200;
+        vertical-align: middle;
+    }
+}
+
+%item {
+    .item {
+        float: left;
+        margin-right: 2em;
+        h5 {
+            margin-bottom: 0.5em;
+        }
+    }
+}
+%common {
+    margin-bottom: 1em;
+    @include clearfix;
+}
+.resume {
+    @extend %common;
+    .photo {
+        float: left;
+        width: 120px;
+        margin-right: 1em; 
+    }
+    .detail {
+        font-size: 85%;
+        text-indent: 2em;
+        line-height: 2;
+        text-align: justify;
+    }
+}
+.contact {
+    @extend %item;
+    @extend %common;
+}
