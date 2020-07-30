@@ -5,7 +5,7 @@ import { Modal, Icon, toast, Avatar, Divider, Loading, Text, Button } from '../l
 
 import styles from './Profile.module.scss';
 import { http } from '@writ/utils/request-fetch';
-import { onProfileModal, onEditPwdModal, onEditInfoModal } from '../../reducers/users';
+import { onProfileModal, onEditPwdModal, onEditInfoModal } from './reducers';
 import { findGender } from '../../reducers/Gender';
 
 import EditInfo from './EditInfo';

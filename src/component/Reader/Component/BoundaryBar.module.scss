@@ -1,0 +1,65 @@
+@charset "UTF8";
+@import '../../index';
+  
+// 收缩工具类
+.boundaryBarTrack {
+    position: absolute;
+    background-color: transparent;
+    z-index: 999;
+    overflow: hidden;
+    &.posTop {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: $base-space;
+        &:hover {
+            .boundaryBarTool {
+                top: 0;
+            }
+        }
+        .boundaryBarTool {
+            top: -100%;
+            left: 50%;
+            height: 100%;
+            line-height: 1;
+            width: $base-space *3;
+            margin-left: -$base-space *1.5;
+            border-radius: 0 0 50% 50%;
+            transition: top 100ms ease;
+        }
+    }
+    &.posRight {
+        top: 0;
+        right: 0;
+        width: $base-space;
+        height: 100%;
+        &:hover {
+            .boundaryBarTool {
+                right: 0;
+            }
+        }
+        .boundaryBarTool {
+            right: -100%;
+            top: 50%;
+            width: 100%;
+            line-height: $base-space *3;
+            height:  $base-space *3;
+            margin-top: -$base-space *1.5;
+            border-radius: 50% 0 0 50%;
+            transition: right 100ms ease;
+        }
+    }
+    
+    .boundaryBarTool {
+        position: absolute;
+        text-align: center;
+        cursor: pointer;
+        border: 1px solid transparent;
+        background-color: $white;
+        border-color: $gray-200;
+        box-sizing: border-box; 
+        &:hover {
+            color: $theme-color;
+        }
+    }
+} 

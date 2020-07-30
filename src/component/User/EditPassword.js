@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Form, Input, Button, toast, Modal } from '@writ/react';
 
 import { http } from '@writ/utils/request-fetch';
-import { setUserRequired, onEditPwdModal } from '../../reducers/users';
+import { setUserRequired, onEditPwdModal } from './reducers';
 import routes from '../routes';
 import User from './User';
 import styles from './index.module.scss';

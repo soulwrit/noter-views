@@ -1,19 +1,44 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-// import classnames from 'classnames';
-// import {} from '../lib';
-// import styles from './index.module.scss';
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { SlotProvider, Slot, ViewBox, ViewArea } from '@writ/react';
 
-class Reader extends React.Component {
-   static defaultProps = {
-   }
+import Layout from './Layout';
+import Sidebar from './Module/Sidebar';
+import { views } from './viewConfig';
 
-   static propTypes = {
-   }
+const ReaderLogic = memo(function RLogic(props) {
+   const { viewKey } = props;
 
-   render() {
-      return 'Text Reader';
-   }
+   return (
+      <ViewBox.Provider>
+         <SlotProvider>
+            <Slot name='sidebar'>
+               <Sidebar />
+            </Slot>
+            <ViewBox name='reader' path={viewKey}>
+               {views.map(view => <ViewArea path={view.key} key={view.key} component={view.component} />)}
+            </ViewBox>
+            <Layout></Layout>
+         </SlotProvider>
+      </ViewBox.Provider>
+   );
+});
+ReaderLogic.defaultProps = {
+   fileSearcherVisible: false
+};
+if (window.DEV) {
+   ReaderLogic.propTypes = {
+      fileSearcherVisible: PropTypes.bool
+   };
 }
+const mapStateToProps = ({ reader }, ) => {
+   return {
+      fileSearcherVisible: reader.searcher.visible,
+      viewKey: reader.layout.viewKey
+   };
+};
+const mapDispatchToProps = {
 
-export default Reader;
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ReaderLogic);

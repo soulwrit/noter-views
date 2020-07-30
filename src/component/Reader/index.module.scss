@@ -1,0 +1,203 @@
+@charset "UTF8";
+@import '../index';
+ 
+// 布局
+.container {
+    width: 100%;
+    height: 100%; 
+    user-select: none; 
+    // 侧边栏
+    @at-root .sidebar {
+        position: relative;
+        padding: $base-space;
+        height: 100%;
+        flex-shrink: 0;
+        padding-right: 0;
+        width: 196px;
+    }
+    // 内容区
+    @at-root .content {
+        overflow: hidden;
+        position: relative;
+        height: 100%; 
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+        padding: $base-space;
+        box-shadow: 0 0 3px $gray-200;
+    }
+    // 右侧边栏
+    @at-root .asidebar {
+        position: relative;
+        width: 20%;
+        padding: $base-space;
+        height: 100%;
+        flex-shrink: 0;
+        transition: width 400ms ease;
+        &.asidebarHidden {
+            width: 0;
+            padding: 0;
+        }
+    }
+}
+
+// 文件检索
+.searchIcon {
+    margin-right: $base-space/3;
+}
+
+// 导航栏
+.sidebarMenu {
+    display: flex; 
+    flex-shrink: 0;   
+    width: 100%;    
+    flex-wrap: wrap;
+    .sidebarMenuIcon {
+        text-align: center;   
+        margin-right: $base-space;
+        margin-bottom: $base-space;
+        cursor: pointer;    
+        &:hover {
+            .sidebarMenuText {
+                color: $theme-color;
+            }
+        }
+    }
+    .sidebarMenuText {
+        margin-top: $base-space/2;
+        color: $muted-color;
+        @include ellipsis;
+    }
+}
+// 我的团队
+.sidebarMyTeam {
+    position: relative;
+    overflow: auto;
+    padding-top: $base-space*2;
+    flex: 1 0 0;
+    .sidebarMyTeamTitle {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-weight: bold;
+    }
+}
+
+// 地址栏 
+.addressDrawer {
+    box-shadow: 0 0 3px $gray-200; 
+    padding: $base-space/1.5 $base-space;
+    .addressDrawerBody {
+       display: flex;
+    }
+    .addressDrawerIcon {
+        flex-shrink: 0;
+        margin-right: $base-space/2;    
+        position: relative;
+        top: 3px;
+    }
+    .addressDrawerText {
+        flex: 1 0 0;
+        @include ellipsis;
+    }
+    .addressDrawerExtra {
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+}
+
+// 主体内容区
+.mainContent {
+    padding-top: $base-space*2;
+    height: 100%;
+    box-sizing: border-box; 
+    transition: padding-top 300ms ease;
+    &.mainContentNoPadding {
+        padding-top: 0;
+        margin-top: -$base-space/1.5;
+    }
+}
+
+// 我的笔记列表
+.myFiles {
+    @include clearfix;
+    padding-top: $base-space/1.5;
+    .fileHold{
+        text-align: center;
+        line-height: 3;
+        color: $muted-color;
+    } 
+    @at-root .fileItem {
+            @include float-left;  
+            position: relative;
+            margin-bottom: $base-space;
+            margin-right: $base-space; 
+            width: 240px;
+            cursor: pointer; 
+            display: flex;
+            transition: all .2s ease;
+            border: 1px solid transparent;
+            box-sizing: border-box; 
+            padding-top: $base-space/4;
+        &.fileItemActive, &:hover{
+            background-color: $gray-100;
+            box-shadow: inset 0 0 $base-space*15 $white;
+            padding-left: $base-space/2;
+            border-color: $gray-200;
+            .fileIcon {
+                color: $theme-color;
+            }
+        }
+        .fileIcon {  
+            text-align: center; 
+            color: $gray-600;
+            flex-shrink: 0;
+            font-size: 1.75em;
+            @include float-left;   
+        }
+        .fileName {
+            flex: 1 0 0;
+            color: $base-color;
+            padding-left: $base-space / 2;
+            line-height:  2.4;
+            @include ellipsis;
+            @include float-left;  
+        }
+    }
+    @at-root .fileInfo { 
+        box-sizing: border-box;
+        height: 100%;
+        width: 100%; 
+        padding-left:  $base-space * 3.4;
+        padding-bottom: $base-space/2;
+        position: relative;
+        .fileInfoIcon {
+            position: absolute;
+            top: 2px;
+            left: 0;
+            color: $theme-color;
+            font-size: 2.75em;
+        }
+        .fileName {
+            @include ellipsis;
+            color: $base-color; 
+            line-height: 2;
+            padding-right: $base-space/2;
+        }
+        .fileIntro {
+            @include ellipsis;
+            color: $gray-400;
+            font-size: 12px; 
+        }
+
+        .fileUpdateAt {
+            margin-left: $base-space*3;
+            color: $muted-color;
+        }
+    }
+}
+
+.centerPager {
+    text-align: center;
+}

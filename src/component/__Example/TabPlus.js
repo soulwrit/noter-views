@@ -41,7 +41,7 @@ export const ExampleTabPlus = () => {
             <List>
                 <List.Head>这是经过高阶加工的 选项卡</List.Head>
                 <List.Item>
-                    布局与位置：<Select defaultValue={initDir} onChange={dirs => setDir(dirs[0].value)}>
+                    布局与位置：<Select defaultValue={initDir} onChange={dir => setDir(dir)}>
                         {dirs.map(value => {
                             return <Select.Option value={value} key={value}>{value}</Select.Option>
                         })}

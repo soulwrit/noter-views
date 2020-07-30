@@ -4,15 +4,15 @@ import React, { Suspense } from 'react';
 import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { connect, Provider } from 'react-redux';
 
-import { Loading, ErrorBoundary, toast } from '@writ/react';
+import { Loading, ErrorBoundary } from '@writ/react';
 import { setConfig as setRequestConfig } from '@writ/utils/request-fetch';
 import { observer } from '../utils/redux';
 
+import { setUserRequired } from './User/reducers';
 import { store } from './store';
+import { API_HOST } from './env';
 import routes from './routes';
-import { setUserRequired } from '../reducers/users';
 
-window.DEV = process.env.NODE_ENV === 'development';
 const mapStateToProps = function (state) {
     return {
         token: state.users.token
@@ -24,25 +24,22 @@ const HOC = connect(mapStateToProps, mapDispatchToProps)(function APP(props) {
         'Content-Type': 'application/json;charset=utf-8'
     };
     setRequestConfig({
-        host: {
-            default: 'http://localhost:9004'
-        },
+        host: API_HOST,
         options: {
             mode: 'cors',
             headers,
         },
         onSuccess(res) {
-            if (res.status === 401) {
+            if (res.status === 401) { 
                 props.setUserRequired({
                     id: undefined,
                     token: undefined
                 });
 
-                return props.history.push(routes.login.path);
+                if (props.history) {
+                    props.history.push(routes.login.path);
+                }
             }
-        },
-        onError(err) {
-            toast.error(err.message);
         }
     });
     if (props.token) {
@@ -52,6 +49,7 @@ const HOC = connect(mapStateToProps, mapDispatchToProps)(function APP(props) {
         headers.Authorization = state.users.token;
         remove();
     });
+    
     return (
         <Suspense fallback={<Loading />}>
             <Switch>

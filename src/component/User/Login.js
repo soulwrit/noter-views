@@ -1,70 +1,57 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useContext, memo, useCallback } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Input, Button, Checkbox, Form, toast } from '../lib';
-import { http } from '@writ/utils/request-fetch';
+import { Input, Button, Checkbox, Form, toast, useEnter } from '@writ/react';
+import { request } from '@writ/utils/request-fetch';
 
+import routes from '../routes';
 import { Logo } from '../Index/Logo';
 import { ConfigContext } from '../Config/Index';
-import styles from './login.module.scss';
-import { setUserRequired } from '../../reducers/users';
-import routes from '../routes';
+import { setUserRequired, clsUserRequired } from './reducers/required';
+import { setUserKeepLogin } from './reducers/login';
 import User from './User';
+import styles from './login.module.scss';
 
-const Login = props => {
-   const { account, form, history, keepalive, setUserRequired, token, } = props;
+const Login = memo(props => {
+   const { account, form, history, checked, clsUserRequired, setUserRequired, setUserKeepLogin, token, } = props;
    const { fields } = form;
    const context = useContext(ConfigContext);
-   const onSubmit = () => {
+   const onSubmit = useCallback(() => {
       try {
-         const autoLogin = keepalive && account && token;
-         let data;
-         if (!autoLogin) {
-            data = form.json(false);
-            setUserRequired({
-               account: data.account
-            });
-         } else {
-            data = {
-               account: account,
-               token: token
+         const isAutoLogin = checked && account && token;
+         const opts = isAutoLogin ? {
+            url: '/user/keep',
+            method: 'post',
+            options: {
+               headers: {
+                  Authorization: token
+               }
+            }
+         } : {
+               url: '/user/login',
+               method: 'post',
+               body: form.json(false)
             };
-         }
 
-         http.post(autoLogin ? '/user/keep' : '/user/login', data).then(res => {
+         request(opts).then(res => {
             if (res.code) {
-               setUserRequired({
-                  id: undefined,
-                  token: undefined
-               });
                throw new Error(res.msg);
             }
-            setUserRequired({
-               id: res.data.id,
-               token: res.data.token
-            });
+            setUserKeepLogin(checked, account);
+            setUserRequired(res.data.id, res.data.token);
             history.push(routes.index.path);
             toast.success('登录成功');
          }).catch(error => {
+            clsUserRequired();
             toast.error(error.message);
          });
       } catch (error) {
          toast.error(error.message);
+         clsUserRequired();
       }
-   }
+   }, [checked, account, token, form]);
 
-   useEffect(() => {
-      const onEnter = e => {
-         if (e.keyCode === 13) {
-            onSubmit();
-         }
-      };
-
-      document.body.addEventListener('keyup', onEnter);
-      return () => {
-         document.body.removeEventListener('keyup', onEnter);
-      };
-   }, []);
+   useEnter(onSubmit, [checked, account, token, form]);
 
    return (
       <div className={styles.warp}>
@@ -79,7 +66,7 @@ const Login = props => {
                      <Input type="password" model={fields.password} size='xl' />
                   </Form.Item>
                   <Form.Item label="记住" useLabel={false}>
-                     <Checkbox name="keepalive" checked={keepalive} onChange={value => setUserRequired(value)} />
+                     <Checkbox name="checked" checked={checked} onChange={setUserKeepLogin} />
                   </Form.Item>
                </Form>
                <div className="tar sm">
@@ -91,16 +78,20 @@ const Login = props => {
          <div className={styles.help}>©2019 老田笔记; 当前版本号 1.0.0</div>
       </div>
    );
-};
+});
 
 const mapStateToProps = ({ users }) => {
+   const { account, checked, } = users.login;
+
    return {
-      keepalive: users.keepalive,
-      account: users.account,
-      id: users.id,
+      account,
+      checked,
       token: users.token,
+      id: users.id,
       form: Form.create({
-         account: User.account,
+         account: Object.assign({}, User.account, {
+            default: account
+         }),
          password: User.password
       }, {
          account: users.account
@@ -109,7 +100,9 @@ const mapStateToProps = ({ users }) => {
 };
 
 const actionsCreator = {
-   setUserRequired
+   clsUserRequired,
+   setUserRequired,
+   setUserKeepLogin,
 };
 
 export default connect(mapStateToProps, actionsCreator)(withRouter(Login));

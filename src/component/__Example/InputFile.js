@@ -115,7 +115,7 @@ export function ExampleInputFile() {
                     },
                     {
                         oa: '视图类型',
-                        op: <Select onChange={e => setType(e[0].value)}>{types.map((value, index) => <Select.Option value={value} key={index} />)}</Select>
+                        op: <Select onChange={type => setType(type)}>{types.map((value, index) => <Select.Option value={value} key={index} />)}</Select>
                     },
                     {
                         oa: '是否可多选文件',

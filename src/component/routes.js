@@ -1,5 +1,4 @@
 import React from 'react';
-
 const test = {
    name: 'test',
    path: '/test',
@@ -25,9 +24,8 @@ const index = {
    path: '/index',
    component: React.lazy(() => import('./Index/Index'))
 };
-
 const editor = {
-   name: '编辑簿',
+   name: '编辑器',
    icon: 'calendar',
    path: index.path + '/editor',
    component: React.lazy(() => import('./Editor'))
@@ -50,7 +48,6 @@ const about = {
    path: index.path + '/about',
    component: React.lazy(() => import('./About/Index'))
 };
-
 export default {
    test,
    notFound,

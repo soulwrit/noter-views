@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Radio } from '../lib';
+import { Box, Radio } from '@writ/react';
 import forTo from '@writ/utils/for-to';
 
 export function ExampleBox() {
@@ -12,9 +12,11 @@ export function ExampleBox() {
 
     return (
         <>
-            列的走向：{<Radio.Group name='dir' onChange={i => setDir(dirs[i])}>{dirs.map(value => (
-                <Radio key={value} value={value} />
-            ))}</Radio.Group>}
+            <p>
+                列的走向：{<Radio.Group name='dir' onChange={i => setDir(dirs[i])}>{dirs.map(value => (
+                    <Radio key={value} value={value} />
+                ))}</Radio.Group>}
+            </p>
             <Box>
                 <Box.Row dir={dir}>{forTo(1, 12, col => (
                     <Box.Col key={col} span={col}>

@@ -1,13 +1,13 @@
 import React, { useContext, useState, useRef } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Input, Radio, Button, Form, toast, Modal } from '../lib';
+import { Input, Radio, Button, Form, toast, Modal } from '@writ/react';
 
 import { Logo } from '../Index/Logo';
 import { ConfigContext } from '../Config/Index';
 import { http } from '@writ/utils/request-fetch';
 import genders from '../../reducers/Gender';
-import { setUserRequired } from '../../reducers/users';
+import { setUserRequired } from './reducers';
 import routes from '../routes';
 import User from './User';
 import styles from './register.module.scss';

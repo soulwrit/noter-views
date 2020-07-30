@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Input, Radio, Button, toast, Avatar, Modal } from '@writ/react';
 
-import { onEditInfoModal } from '../../reducers/users';
+import { onEditInfoModal } from './reducers';
 import { http } from '@writ/utils/request-fetch';
 import genders from '../../reducers/Gender';
 import User from './User';
@@ -26,7 +26,8 @@ class InfoEdit extends React.PureComponent {
         if (!this.props.value) {
             return toast.success('不存在可编辑的个人信息！');
         }
-        this.form.value(this.cached);
+
+        this.form.setValue(this.cached);
     }
     onSubmit = () => {
         try {

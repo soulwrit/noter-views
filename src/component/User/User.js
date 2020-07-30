@@ -1,6 +1,6 @@
 export default {
     account: {
-        default: 'admin',
+        default: Math.random().toString(36).substr(2),
         label: '账号',
         placeholder: '请输入账号',
         validate(value) {

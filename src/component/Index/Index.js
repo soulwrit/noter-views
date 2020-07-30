@@ -6,7 +6,7 @@ import { Icon, Loading, Menu, Dropdown, ViewBox } from '../lib';
 import styles from './Index.module.scss';
 import routes from '../routes';
 
-import { onLogoutModal, onProfileModal } from '../../reducers/users';
+import { openUserLogout, onProfileModal } from '../User/reducers';
 import { onMessageModal } from '../../reducers/message';
 import { onVisible as onChatModal } from '../../reducers/chat';
 import { getDefaultMenuKey, menus } from './menu';
@@ -56,13 +56,11 @@ class Index extends React.PureComponent {
                   lineBarColor='#fff'
                   lineBarDir='rtt'
                   index={getDefaultMenuKey(this.props.location)}
-               >{
-                     menus.map(({ route, name }) => (
-                        <Menu.Item className={styles.headerNavItem} key={name} title={route.name}>
-                           <Icon className={styles.headerNavIcon} type={route.icon} /> {route.name}
-                        </Menu.Item>
-                     ))
-                  }</Menu>
+               >{menus.map(({ route, name }) => (
+                  <Menu.Item className={styles.headerNavItem} key={name} title={route.name}>
+                     <Icon className={styles.headerNavIcon} type={route.icon} /> {route.name}
+                  </Menu.Item>
+               ))}</Menu>
                <div className={styles.headerRight}>
                   <Icon type='smile' className={styles.headerRightIcon} onClick={props.onChat} />
                   <Icon type='remind' className={styles.headerRightIcon} onClick={props.onMessage} />
@@ -70,8 +68,8 @@ class Index extends React.PureComponent {
                      <Dropdown.Head>
                         <Icon type='set' className={styles.headerRightIcon} />
                      </Dropdown.Head>
-                     <Dropdown.Item value='我的信息' onClick={() => props.onProfile(props.myId)} />
-                     <Dropdown.Item value='退出' onClick={props.onLogout} />
+                     <Dropdown.Item value='我的信息' onClick={() => props.onProfile(props.id)} />
+                     <Dropdown.Item value='退出' onClick={props.openUserLogout} />
                   </Dropdown>
                </div>
             </div>
@@ -90,7 +88,7 @@ class Index extends React.PureComponent {
                <div className={styles.footerLeft}></div>
                <div className={styles.footerRight}></div>
             </div>
-            {props.modalLogout ? <Logout /> : null}
+            {props.modalUserLogout ? <Logout /> : null}
             {props.modalChat ? <Chat /> : null}
             {props.modalUserProfile ? <UserProfile /> : null}
             {props.modalMessage ? <Message /> : null}
@@ -106,10 +104,10 @@ class Index extends React.PureComponent {
 }
 const mapStateToProps = function (state) {
    return {
-      myId: state.users.id,
+      id: state.users.id,
       token: state.users.token,
       modalChat: state.chat.visible,
-      modalLogout: state.users.modalLogout,
+      modalUserLogout: state.users.logout.visible,
       modalUserProfile: state.users.modalProfile,
       modalMessage: state.message.visible,
       modalGroupProfile: state.groups.modalProfile,
@@ -123,7 +121,7 @@ const mapStateToProps = function (state) {
 const mapDispatchToProps = {
    onMessage: onMessageModal,
    onProfile: onProfileModal,
-   onLogout: onLogoutModal,
-   onChat: onChatModal
+   onChat: onChatModal,
+   openUserLogout
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Index);

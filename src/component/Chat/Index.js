@@ -6,7 +6,7 @@ import { Modal, Tabs, Icon, Avatar, Text, Placeholder } from '../lib';
 import styles from './Index.module.scss';
 import date from '../../utils/date';
 import { onGroupModal, onGroupProfileModal } from '../../reducers/groups';
-import { onProfileModal as onUserProfileModal } from '../../reducers/users';
+import { onProfileModal as onUserProfileModal } from '../User/reducers';
 import { onMaximize, onVisible, setActivityIndex, delActivity } from '../../reducers/chat';
 
 import Def_Avatar from '../User/avatar.jpg';

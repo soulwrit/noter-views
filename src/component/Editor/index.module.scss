@@ -1,113 +1,229 @@
 @charset "UTF8";
 @import '../index';
-
+ 
 $menuBarWidth: 40px;
 $slideBarWidth: 2px;
 $slideTitHeight: 34px;
-
-@mixin commonStyle1{
-    box-shadow: 0 1px 10px $gray-400;
-    padding-left: $base-space * 2/3 !important;
-    padding-right: $base-space * 2/3 !important;
-}
-
-// 滑动布局
-.box {
+$commonBorder: 1px solid $gray-200; 
+// 布局
+.container {
     width: 100%;
-    height: 100%;
-    display: flex; 
-    user-select: none;
-    * {
-        box-sizing: border-box;
-    }
-    .left {
+    height: 100%; 
+    user-select: none; 
+    // 侧边栏
+    @at-root .sidebar {
         position: relative;
-        min-width: $slideBarWidth + $menuBarWidth;
+        min-width: $slideBarWidth + $menuBarWidth; 
+        width: 236px;
+        height: 100%;
+        flex-shrink: 0;
+        // 活动栏
+        .activityBar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 1;
+            width: $menuBarWidth;
+            height: 100%;
+            text-align: center; 
+            background-color: $gray-100; 
+            border-right: $commonBorder;
+            display: flex;
+            flex-direction: column;
+        } 
+        // 菜单内容
+        @at-root .navContent {
+            position: relative;
+            height: 100%;
+            padding-left: $menuBarWidth;  
+            border-right: $commonBorder;   
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box; 
+            
+            .navHead {
+                height: $slideTitHeight;
+                line-height: $slideTitHeight;
+                padding: 0 $base-space/1.5;
+                background-color: $gray-100; 
+                display: flex;
+                box-sizing: border-box;
+                border-bottom: $commonBorder;   
+                .navAction {
+                    flex: 1;
+                    text-align: right;
+                    i {
+                        margin-left: 10px;
+                        cursor: pointer;
+                    }
+                }
+                .navTitle {
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .navBody {
+                position: relative;  
+                overflow: hidden; 
+                flex: 1 0 0;
+                padding: 0;
+                background-color: #fefaff;
+            }
+        }
+        
+        // 滑动干
+        .slideBar {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+            height: 100%;
+            padding-right: $slideBarWidth;
+            background-color: transparent;
+            cursor: ew-resize;
+        }
+    }
+    // 内容区
+    @at-root .content {
         overflow: hidden;
-        height: 100%;
-    }
-    .right {
         position: relative;
-        flex: 1;
         height: 100%;
+        width: auto;
+        flex: 1 0 0;
+        display: flex;
+        flex-direction: column;
+        user-select: none;   
+        
+        // 编辑区 
+        @at-root .tabs {
+            position: relative;
+            overflow: hidden; 
+            width: 100%;
+            height: $slideTitHeight;
+            line-height: $slideTitHeight;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            .tabItems {
+                overflow: hidden;
+                white-space: nowrap;  
+                background-color: $gray-100;
+                flex: 1 0 0;
+            }
+            .tabExtra {
+                padding: 0 $base-space;
+                cursor: pointer; 
+                border-left: $commonBorder; 
+                background-color: $gray-100;
+                flex-shrink: 0;
+            }
+        }
+        .mainContent {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            flex: 1 0 0;
+        }
     }
 }
 
 // 栏菜单
-.menuBar {
+.menuIcon{ 
+    display: block;
+    margin-top: $menuBarWidth / 5;
+    margin-bottom: $menuBarWidth / 2;
+    font-size: 150%; 
+    cursor: pointer;
+    &:hover {
+        color: $theme-color; 
+    }
+}
+
+// 欢迎
+.welcome {
+    z-index: 1;
     position: absolute;
+    top: 0;
     left: 0;
-    top: 0;
-    z-index: 1;
-    width: $menuBarWidth;
+    width: 100%;
     height: 100%;
-    background-color: $gray-100;   
-    text-align: center; 
-    .menuIcon{ 
-        display: block;
-        margin-top: $menuBarWidth / 5;
-        margin-bottom: $menuBarWidth / 2;
-        font-size: 150%; 
-        cursor: pointer;
-        &:hover {
-            color: $theme-color; 
-        }
+    color: $gray-500;
+    background-color: $white;
+    .welcomeIcon {
+        font-size: 115%;
+        margin-right: $base-space * 2/3;        
     }
 }
 
-// 滑动盒子
-.slideBox {
+// 编辑区页签
+.editTabItem {
     position: relative;
+    display: inline-block;
     height: 100%;
-    padding-left: $menuBarWidth;
-    padding-right: $slideBarWidth;
-    border-right: 1px solid $gray-100;
-    box-sizing: border-box;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-// 滑动干
-.slideBar {
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 1;
-    width: $slideBarWidth;
-    height: 100%;
-    cursor: ew-resize;
-}
-
-// *****
-.menuHead {
-    height: $slideTitHeight;
-    line-height: $slideTitHeight;
-    padding: 0 $base-space;
+    padding-left: $base-space * 0.6;
+    padding-right: $base-space * 3;
+    font-size: 82.5%;
+    border-right: $commonBorder;
+    border-bottom: $commonBorder;
     background-color: $gray-100;
-    margin-right: -$slideBarWidth;
-    display: flex;
-    .menuTitle {
-        text-overflow: ellipsis;
-    }
-    .menuAction {
-        flex: 1;
-        text-align: right;
-        i {
-            margin-left: 10px;
-            cursor: pointer;
+    cursor: pointer;
+    user-select: none;
+    box-sizing: border-box;
+    &.active {
+        background-color: $white; 
+        border-bottom-color: transparent;
+        .editTabItemClose {
+            display: unset;
+            color: $gray-900;
         }
     }
+    &:hover .editTabItemClose {
+        display: unset;
+        color: $red;
+    }
+    .editTabItemClose {
+        display: none;
+        position: absolute;
+        right: $base-space * 0.5;
+        line-height: inherit;
+        font-size: 120%;
+        transition: color 400ms ease;
+    } 
 }
-.menuBody {
-    flex: 1;
-    position: relative;
-    overflow-y: auto;
-    height: 100%;
-    padding: $base-space;
-    background-color: #fefaff;
-}
-// *****
 
+// 文件菜单树
+.treeNode { 
+    line-height: $slideTitHeight - 5;
+    padding: 0 $base-space/2;
+    font-size: 82.5%;
+    &:hover {
+        background-color: rgba($gray-300, 0.50);
+    }
+    &.treeNodeActive {
+        color: $white;
+        background-color: $theme-color;
+    }
+    .treeNodeName {
+        margin-left: $base-space/3;
+    }
+}
+
+// 右键菜单
+.ctxMenuItem {
+    cursor: pointer;
+    transition: color 400ms ease;
+    &:hover {
+        color: $theme-color;
+    }
+}
+.ctxMenuArea {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+// _____________________________________
 // 搜索 
 .searchEnter{
     width: 100%;
@@ -136,4 +252,10 @@ $slideTitHeight: 34px;
     margin-right: 15px;
     font-size: 13px;
     text-align: left;
+}
+
+// 
+.monacoEditor {
+    width: 100%;
+    height: 100%;
 }

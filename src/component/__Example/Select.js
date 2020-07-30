@@ -122,10 +122,10 @@ export const ExampleSelect = () => {
             <List>
                 <List.Head>下拉选择器的相关信息</List.Head>
                 <List.Item>
-                    吃货的选择： {food.map((item, key) => {
+                    吃货的选择： {Array.isArray(food) ? food.map((item, key) => {
                         return <Text key={key}>{item.label} ID({item.value}) </Text>;
-                    })}
-                    吃货还选择：{water ? water.map((item, key) => {
+                    }) : food}
+                    吃货还选择：{Array.isArray(water) ? water.map((item, key) => {
                         return <Text key={key}>{item.label} ID({item.value}) </Text>;
                     }) : null}
                 </List.Item>

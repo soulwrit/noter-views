@@ -6,7 +6,7 @@ import styles from './AuditMsg.module.scss';
 import { http } from '@writ/utils/request-fetch';
 import date from '../../utils/date';
 import { onJoinGroupAuditModal } from '../../reducers/groups';
-import { onProfileModal } from '../../reducers/users';
+import { onProfileModal } from '../User/reducers';
 import getAuditMsg from '../../utils/getAuditMsg';
 
 const Link = function (props) {
