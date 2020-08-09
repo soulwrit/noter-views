@@ -10,6 +10,7 @@ import { ExampleCard } from './__Example/Card';
 import { ExampleCheckbox } from './__Example/Checkbox';
 import { ExampleColorPicker } from './__Example/ColorPicker';
 import { ExampleContextMenu } from './__Example/ContextMenu';
+import { ExampleComment } from './__Example/Comment';
 import { ExampleCover } from './__Example/Cover';
 import { ExampleCrumbs } from './__Example/Crumbs';
 import { ExampleDrawer } from './__Example/Drawer';
@@ -49,6 +50,10 @@ import { ExampleTooltip } from './__Example/Tooltip';
 import { ExampleToast } from './__Example/Toast';
 
 const data = [
+    {
+        tab: 'Comment',
+        item: ExampleComment
+    },
     {
         tab: 'TabPlus',
         item: ExampleTabPlus

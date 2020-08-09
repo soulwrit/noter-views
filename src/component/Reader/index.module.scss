@@ -35,6 +35,7 @@
         flex-shrink: 0;
         transition: width 400ms ease;
         &.asidebarHidden {
+            opacity: 0;
             width: 0;
             padding: 0;
         }
@@ -88,6 +89,7 @@
 .addressDrawer {
     box-shadow: 0 0 3px $gray-200; 
     padding: $base-space/1.5 $base-space;
+    height: auto !important;
     .addressDrawerBody {
        display: flex;
     }
@@ -127,77 +129,5 @@
         text-align: center;
         line-height: 3;
         color: $muted-color;
-    } 
-    @at-root .fileItem {
-            @include float-left;  
-            position: relative;
-            margin-bottom: $base-space;
-            margin-right: $base-space; 
-            width: 240px;
-            cursor: pointer; 
-            display: flex;
-            transition: all .2s ease;
-            border: 1px solid transparent;
-            box-sizing: border-box; 
-            padding-top: $base-space/4;
-        &.fileItemActive, &:hover{
-            background-color: $gray-100;
-            box-shadow: inset 0 0 $base-space*15 $white;
-            padding-left: $base-space/2;
-            border-color: $gray-200;
-            .fileIcon {
-                color: $theme-color;
-            }
-        }
-        .fileIcon {  
-            text-align: center; 
-            color: $gray-600;
-            flex-shrink: 0;
-            font-size: 1.75em;
-            @include float-left;   
-        }
-        .fileName {
-            flex: 1 0 0;
-            color: $base-color;
-            padding-left: $base-space / 2;
-            line-height:  2.4;
-            @include ellipsis;
-            @include float-left;  
-        }
     }
-    @at-root .fileInfo { 
-        box-sizing: border-box;
-        height: 100%;
-        width: 100%; 
-        padding-left:  $base-space * 3.4;
-        padding-bottom: $base-space/2;
-        position: relative;
-        .fileInfoIcon {
-            position: absolute;
-            top: 2px;
-            left: 0;
-            color: $theme-color;
-            font-size: 2.75em;
-        }
-        .fileName {
-            @include ellipsis;
-            color: $base-color; 
-            line-height: 2;
-            padding-right: $base-space/2;
-        }
-        .fileIntro {
-            @include ellipsis;
-            color: $gray-400;
-            font-size: 12px; 
-        }
-
-        .fileUpdateAt {
-            margin-left: $base-space*3;
-            color: $muted-color;
-        }
-    }
-}
-
-.centerPager {
-    text-align: center;
 }

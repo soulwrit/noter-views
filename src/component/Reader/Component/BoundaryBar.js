@@ -13,7 +13,7 @@ const getPosition = position => {
         default: return styles.posTop;
     }
 };
-const BoundaryBar = memo(function ReaderLayout(props) {
+const BoundaryBar = memo(function BoundaryBarRC(props) {
     const { onAction, icon, none, position } = props;
 
     return (

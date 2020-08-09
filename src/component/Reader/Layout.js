@@ -4,15 +4,13 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import { Flex, FlexItem, Slot, Drawer, Icon, Scrollor } from '@writ/react';
 import { BoundaryBar } from './Component/BoundaryBar';
+import { closeReaderLayoutMessageBox } from './reducers/layout';
 import styles from './index.module.scss';
 
-const Layout = memo(function ReaderLayout() {
+const Layout = memo(function ReaderLayout(props) {
+    const { closeMessageBox, messageBoxVisible } = props;
     const [addressVisible, setAddressVisible] = useState(true);
     const [asidebarVisible, setAsidebarVisible] = useState(true);
-    const [messageVisible, setMessageVisible] = useState(true);
-    const onAsidebarVisible = () => {
-        setAsidebarVisible(!asidebarVisible);
-    };
 
     return (
         <Flex className={styles.container}>
@@ -21,7 +19,7 @@ const Layout = memo(function ReaderLayout() {
             </FlexItem>
             <FlexItem className={styles.content}>
                 <BoundaryBar icon='unfold' position='top' none={addressVisible} onAction={() => setAddressVisible(true)} />
-                <BoundaryBar icon={asidebarVisible ? 'more' : 'back'} position='right' none={false} onAction={onAsidebarVisible} />
+                <BoundaryBar icon={asidebarVisible ? 'more' : 'back'} position='right' none={false} onAction={() => setAsidebarVisible(!asidebarVisible)} />
                 <Drawer
                     className={styles.addressDrawer}
                     bodyClassName={styles.addressDrawerBody}
@@ -49,13 +47,13 @@ const Layout = memo(function ReaderLayout() {
                     placement='bottom'
                     global={false}
                     mask={false}
-                    visible={messageVisible}
+                    visible={messageBoxVisible}
                 >
                     <div className={styles.addressDrawerText}>
                         <Slot.Install name='message' />
                     </div>
-                    <div className={styles.addressDrawerExtra} onClick={() => setMessageVisible(false)}>
-                        <Icon type='close' size='3x' title='隐藏标题栏' />
+                    <div className={styles.addressDrawerExtra} onClick={closeMessageBox}>
+                        <Icon type='close' size='3x' title='底部说明栏' />
                     </div>
                 </Drawer>
             </FlexItem>
@@ -67,20 +65,21 @@ const Layout = memo(function ReaderLayout() {
 });
 
 Layout.defaultProps = {
-    messageVisible: true,
+
 };
 if (window.DEV) {
     Layout.propTypes = {
-        messageVisible: PropTypes.bool
+        closeMessageBox: PropTypes.func,
+        messageBoxVisible: PropTypes.bool
     };
 }
 const mapStateToProps = ({ reader }, ) => {
     return {
-        messageVisible: reader.layout.messageVisible
+        messageBoxVisible: reader.layout.messageBoxVisible,
     };
 };
 const mapDispatchToProps = {
-
+    closeMessageBox: closeReaderLayoutMessageBox
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);

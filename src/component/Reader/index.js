@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { SlotProvider, Slot, ViewBox, ViewArea } from '@writ/react';
 
 import Layout from './Layout';
-import Sidebar from './Module/Sidebar';
 import { views } from './viewConfig';
+import Sidebar from './Module/Sidebar';
 
 const ReaderLogic = memo(function RLogic(props) {
    const { viewKey } = props;

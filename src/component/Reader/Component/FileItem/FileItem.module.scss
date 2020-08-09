@@ -1,0 +1,39 @@
+@charset "UTF8";
+@import '../../../index';
+.item {
+    @include float-left;  
+    display: flex;
+    position: relative;
+    width: 240px;
+    margin-bottom: $base-space;
+    margin-right: $base-space; 
+    cursor: pointer; 
+    transition: all .2s ease;
+    border: 1px solid transparent;
+    padding-top: $base-space/4;
+    box-sizing: border-box;
+    &.active, &:hover{
+        background-color: $gray-100;
+        box-shadow: inset 0 0 $base-space*15 $white;
+        padding-left: $base-space/2;
+        border-color: $gray-200;
+        .icon {
+            color: $theme-color;
+        }
+    }
+    .icon {  
+        text-align: center; 
+        color: $gray-600;
+        flex-shrink: 0;
+        font-size: 1.75em;
+        @include float-left;   
+    }
+    .name {
+        flex: 1 0 0;
+        color: $base-color;
+        padding-left: $base-space / 2;
+        line-height:  2.4;
+        @include ellipsis;
+        @include float-left;  
+    }
+}

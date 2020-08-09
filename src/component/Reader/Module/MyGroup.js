@@ -8,8 +8,13 @@ const MyGroup = memo(function MGroup(props) {
 
     return (
         <>
-            <Slot name='address'>我的团队</Slot>
-            <Slot name='content'></Slot>
+            <Slot name='address'>团队笔记列表</Slot>
+            <Slot name='content'>
+                
+            </Slot>
+            <Slot name='asidebar'>
+                团队成员
+            </Slot>
         </>
     );
 });

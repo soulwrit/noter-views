@@ -5,7 +5,6 @@ import classnames from 'classnames';
 import { Slot } from '@writ/react';
 
 const FileDetail = memo(function Detail(props) {
-
     return (
         <>
             <Slot name='address'>笔记详情</Slot>
@@ -25,11 +24,11 @@ const FileDetail = memo(function Detail(props) {
     );
 });
 FileDetail.defaultProps = {
-
+    fileId: null
 };
 if (window.DEV) {
     FileDetail.propTypes = {
-
+        fileId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired
     };
 }
 const mapStateToProps = () => {
